@@ -114,7 +114,11 @@ def add_status(current_status):
         for message_list in status_messages:
             print(status_position,message_list)
             status_position += 1
-        status_select = int(input("Select a status from given list\n"))
+        try:
+            status_select = int(input("Select a status from given list\n"))
+        except ValueError:
+            print(colors.red("invalid entry"))
+            return add_status(current_status)
         if len(status_messages) >= status_select:
             updated_status = colored(status_messages[status_select - 1],'green')
             print("Your status is updated")
@@ -134,7 +138,7 @@ def add_status(current_status):
             print(colors.cyan("Your status is updated"))
             print("your updated status is ",updated_status)
     else:
-        print(colors.red("you choose is invalid or wrong!"))
+        print(colors.red("you choice is invalid or wrong!"))
         menu()
     return updated_status
 
