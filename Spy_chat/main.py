@@ -209,8 +209,7 @@ def send_message():
     temp = text.split(' ')
     for index in special:
         if index in temp:
-            temp[temp.index(index)]='i am in danger'
-
+            temp[temp.index(index)]='Please help me'
     text = str.join(' ',temp)
     new_chat = chat_messages(text, True)
     if user_name == 'yes':
@@ -239,6 +238,12 @@ def read_message():
         if secret == None:
             print(colors.red("No secret message in given image"))
         else:
+            temp = secret.split(' ')
+            for index in special:
+                if index in temp:
+                    temp[temp.index(index)] = 'Please help me'
+            secret = str.join(' ', temp)
+            secret = colored(secret,'yellow')
             print("Secret message is  ",secret)
     elif choice == '2':
         friend_position = select_friend()
