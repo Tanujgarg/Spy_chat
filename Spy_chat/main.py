@@ -81,7 +81,7 @@ def rating():
             try:
                 spy_rating = float(spy_rating)
             except ValueError:
-                print("Rating must be float or integer")
+                print(colors.red("Rating must be float or integer"))
                 return rating()
             if spy_rating >= 0.0 and spy_rating <= 3.0:
                 print("Your rating is poor")
