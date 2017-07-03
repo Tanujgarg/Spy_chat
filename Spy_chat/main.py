@@ -9,6 +9,7 @@ print(colors.green("--------Let's Gets Started--------\n"))
 status_messages = ['Online','Offline','Busy']
 special = ['SOS','sos','HELP','help']
 verification = 'yes'
+user = []
 '''
 There are 4 fuctions (name,salutation,age,rating)
 which takes inputs from user and check inputs on some
@@ -77,7 +78,11 @@ def rating():
         if spy_rating.isalpha():
             print(colors.red("Rating must be float or integer"))
         else:
-            spy_rating = float(spy_rating)
+            try:
+                spy_rating = float(spy_rating)
+            except ValueError:
+                print("Rating must be float or integer")
+                return rating()
             if spy_rating >= 0.0 and spy_rating <= 3.0:
                 print("Your rating is poor")
                 return spy_rating
@@ -257,10 +262,11 @@ def show_profile():
         print("Rating : ",admin.rating)
         print("No. of friends : ",len(friends))
     else:
-        print("Name : ", user_name.salutation.upper(), user_name.name.upper())
-        print("Age : ", user_name.age)
-        print("Rating : ", user_name.rating)
-        print("No. of friends : ", len(user_friends))
+        for i in user:
+            print("Name : ", i.salutation.upper(), i.name.upper())
+            print("Age : ", i.age)
+            print("Rating : ", i.rating)
+            print("No. of friends : ", len(user_friends))
 
 
 '''
@@ -317,6 +323,7 @@ def main():
             new_user.salutation = salutation()
             new_user.age = age()
             new_user.rating = rating()
+            user.append(new_user)
             print("Wellcome " + new_user.salutation + " " + new_user.name + " in spy chat")
         else:
             if password == verify:
@@ -328,12 +335,14 @@ def main():
                 new_user.salutation = salutation()
                 new_user.age = age()
                 new_user.rating = rating()
+                user.append(new_user)
                 print("Wellcome " + new_user.salutation + " " + new_user.name + " in spy chat")
     else:
 
         new_user.salutation = salutation()
         new_user.age = age()
         new_user.rating = rating()
+        user.append(new_user)
         print("Wellcome " + new_user.salutation + " " + new_user.name + " in spy chat")
     return 'no'
 
