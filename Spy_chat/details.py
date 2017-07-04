@@ -15,7 +15,7 @@ class Spy:
 
 class chat_messages:
     def __init__(self,message,sent_by_me):
-        self.message = colored(message,'yellow')
+        self.message = colored(message,'green')
         self.time = colored(datetime.now(),'blue')
         self.sent_by_me = sent_by_me
 

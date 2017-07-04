@@ -226,6 +226,8 @@ read_chat works in two ways
 def read_message():
     choice = input("1.Read message from image\n2.Read friend chat history\n")
     if choice == '1':
+        print("Select a friend")
+        friend_position = select_friend()
         output_image = input("Enter tha name of image without extension\n")
         output_image = output_image+'.png'
         try:
@@ -258,7 +260,11 @@ def read_message():
                 print(colors.red("Chat is empty"))
             else:
                 for chat in friends[friend_position].chats:
-                    print("At ",chat.time,"message ",chat.message)
+                    if chat.sent_by_me:
+                        print("At ", chat.time, "You said ", chat.message)
+                    else:
+                        print("At ", chat.time, "Your friend said ", chat.message)
+
         else:
             if len(user_friends[friend_position].chats) == 0:
                 print(colors.red("Chat is empty"))
