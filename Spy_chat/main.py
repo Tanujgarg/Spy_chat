@@ -250,7 +250,7 @@ def read_message():
             if len(temp) > 100:                       # option to delete a spy if talking in more than 100 words
                 print(colored("Your friend talk more then 100 words",'red'))
                 delete = input("Do you want to delete this friend(yes/no)?\n")
-                if delete == 'yes':
+                if delete.upper() == 'YES':
                     if verification == 'yes':
                         del friends[friend_position]
                         print(colored("Friend deleted",'cyan'))
