@@ -245,7 +245,22 @@ def read_message():
             for index in special:
                 if index in temp:
                     temp[temp.index(index)] = 'Please help me'
+            if len(temp) > 100:
+                print(colored("Your friend talk more then 100 words",'red'))
+                delete = input("Do you want to delete this friend(yes/no)?\n")
+                if delete == 'yes':
+                    if verification == 'yes':
+                        del friends[friend_position]
+                        print(colored("Friend deleted",'cyan'))
+                        menu()
+                    else:
+                        del user_friends[friend_position]
+                        print(colored("Friend deleted", 'cyan'))
+                        menu()
+                else:
+                    pass
             secret = str.join(' ', temp)
+
             new_chat = chat_messages(secret, False)
             if user_name == 'yes':
                 friends[friend_position].chats.append(new_chat)
