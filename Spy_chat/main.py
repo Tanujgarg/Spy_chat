@@ -109,7 +109,7 @@ def add_status(current_status):
         print("You don't have any current status")
 
     status_choice = input("Do you want to select your status from older status list (yes/no)?\n")
-    if status_choice == 'yes':
+    if status_choice.upper() == 'YES':
         status_position = 1
         for message_list in status_messages:
             print(status_position,message_list)
@@ -127,7 +127,7 @@ def add_status(current_status):
             print(colors.red("Your choice is wrong"))
             print("")
             menu()
-    elif status_choice == 'no':
+    elif status_choice.upper() == 'NO':
         new_status = input("Enter your new status message which you want to update.\n")
         if len(new_status) == 0:
             print("You don't have any status update")
