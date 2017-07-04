@@ -194,9 +194,9 @@ after encoding message will be saved in friend chatbox
 
 def send_message():
     friend_position = select_friend()
-    original_image = input("Enter name of image without extension\n")
+    original_image = input("Enter name of image followed by extension\n")
     text = input("Enter message which you want to encode\n ")
-    output_image = input("Enter name of output image\n")
+    output_image = input("Enter name of output image without extension\n")
     output_image = "./"+output_image+".png"
     try:
         secret = lsb.hide(original_image,text)
@@ -226,10 +226,12 @@ read_chat works in two ways
 def read_message():
     choice = input("1.Read message from image\n2.Read friend chat history\n")
     if choice == '1':
-        output_image = input("Enter tha name of image followed by extension\n")
+        output_image = input("Enter tha name of image without extension\n")
+        output_image = output_image+'.png'
         try:
             secret = lsb.reveal(output_image)
             secret = str(secret)
+
             #secret = colored(secret,'cyan')
         except FileNotFoundError:
             print(colors.red("No image found with this name"))
@@ -242,6 +244,11 @@ def read_message():
                 if index in temp:
                     temp[temp.index(index)] = 'Please help me'
             secret = str.join(' ', temp)
+            new_chat = chat_messages(secret, False)
+            if user_name == 'yes':
+                friends[friend_position].chats.append(new_chat)
+            else:
+                user_friends[friend_position].chats.append(new_chat)
             secret = colored(secret,'yellow')
             print("Secret message is",secret)
     elif choice == '2':
