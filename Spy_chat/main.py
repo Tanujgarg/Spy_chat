@@ -1,3 +1,5 @@
+# This code is witten by 'Tanuj Garg' <Tanujgarg@y7mail.com>
+
 from details import admin,Spy,friends,password,user_friends,chat_messages
 from stegano import lsb
 import colors
@@ -151,7 +153,7 @@ def add_friend():
     new_friend.salutation = salutation()
     new_friend.age = age()
     new_friend.rating = rating()
-    if user_name == 'yes':
+    if user_name == 'yes':               # checking user is admin or not
         friends.append(new_friend)
         return len(friends)
     else:
@@ -163,7 +165,7 @@ def add_friend():
 def select_friend():
     print("Select a friend")
     position = 1
-    if user_name == 'yes':
+    if user_name == 'yes':                # checking user is admin or not
         for friend in friends:
             print(position,friend.name)
             position += 1
@@ -199,7 +201,7 @@ def send_message():
     output_image = input("Enter name of output image without extension\n")
     output_image = "./"+output_image+".png"
     try:
-        secret = lsb.hide(original_image,text)
+        secret = lsb.hide(original_image,text)  # Encode text in a image
         secret.save(output_image)
     except FileNotFoundError:
         print(colors.red("No image found with this name"))
@@ -210,7 +212,7 @@ def send_message():
             temp[temp.index(index)]='Please help me'
     text = str.join(' ',temp)
     new_chat = chat_messages(text, True)
-    if user_name == 'yes':
+    if user_name == 'yes':                              # checking user is admin or not
         friends[friend_position].chats.append(new_chat)
     else:
         user_friends[friend_position].chats.append(new_chat)
@@ -231,7 +233,7 @@ def read_message():
         output_image = input("Enter tha name of image without extension\n")
         output_image = output_image+'.png'
         try:
-            secret = lsb.reveal(output_image)
+            secret = lsb.reveal(output_image)   # Decode text from the image
             secret = str(secret)
 
             #secret = colored(secret,'cyan')
@@ -243,9 +245,9 @@ def read_message():
         else:
             temp = secret.split(' ')
             for index in special:
-                if index in temp:
+                if index in temp:     # checking some special words if exist then replace
                     temp[temp.index(index)] = 'Please help me'
-            if len(temp) > 100:
+            if len(temp) > 100:                       # option to delete a spy if talking in more than 100 words
                 print(colored("Your friend talk more then 100 words",'red'))
                 delete = input("Do you want to delete this friend(yes/no)?\n")
                 if delete == 'yes':
