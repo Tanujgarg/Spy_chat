@@ -208,6 +208,9 @@ def send_message():
     except FileNotFoundError:
         print(colors.red("No image found with this name"))
         menu()
+    except AssertionError:
+        print(colors.red("You don't enter any message"))
+        menu()
     temp = text.split(' ')
     for index in special:
         if index in temp:
@@ -232,7 +235,7 @@ def read_message():
     if choice == '1':
         print("Select a friend")
         friend_position = select_friend()
-        output_image = input("Enter tha name of image without extension\n")
+        output_image = input("Enter tha name of image without extension(image must have .png extension)\n")
         output_image = output_image+'.png'
         try:
             secret = lsb.reveal(output_image)   # Decode text from the image
