@@ -235,8 +235,7 @@ def read_message():
     if choice == '1':
         print("Select a friend")
         friend_position = select_friend()
-        output_image = input("Enter tha name of image without extension(image must have .png extension)\n")
-        output_image = output_image+'.png'
+        output_image = input("Enter tha name of image followed by extention)\n")
         try:
             secret = lsb.reveal(output_image)   # Decode text from the image
             secret = str(secret)
@@ -271,8 +270,10 @@ def read_message():
             new_chat = chat_messages(secret, False)
             if user_name == 'yes':
                 friends[friend_position].chats.append(new_chat)
+                print(colors.cyan("Secret message is saved!"))
             else:
                 user_friends[friend_position].chats.append(new_chat)
+                print(colors.cyan("Secret message is saved!"))
             secret = colored(secret,'yellow')
             print("Secret message is",secret)
     elif choice == '2':
@@ -336,7 +337,7 @@ def menu():
             elif choice == '2':
                 print("You choose for Add a new friend")
                 total_friends = add_friend()
-                print("you have",total_friends,"friend/friends in your list")
+                print("you have",colored(total_friends,'blue'),"friend/friends in your list")
             elif choice == '3':
                 print("You choose For read a chat")
                 read_message()
