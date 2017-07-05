@@ -1,4 +1,6 @@
 # This code is witten by 'Tanuj Garg' <Tanujgarg@y7mail.com>
+# This code is written in Python 3.6
+
 
 from details import admin,Spy,friends,password,user_friends,chat_messages
 from stegano import lsb
