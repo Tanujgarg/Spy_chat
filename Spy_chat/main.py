@@ -216,7 +216,7 @@ def send_message():
         if index in temp:
             temp[temp.index(index)]='Please help me'
     text = str.join(' ',temp)
-    new_chat = chat_messages(text, True)
+    new_chat = chat_messages(text, True)            # object of the class chat_messages
     if user_name == 'yes':                              # checking user is admin or not
         friends[friend_position].chats.append(new_chat)
     else:
@@ -267,7 +267,7 @@ def read_message():
                     pass
             secret = str.join(' ', temp)
 
-            new_chat = chat_messages(secret, False)
+            new_chat = chat_messages(secret, False)     # object of the class
             if user_name == 'yes':
                 friends[friend_position].chats.append(new_chat)
                 print(colors.cyan("Secret message is saved!"))
@@ -298,6 +298,7 @@ def read_message():
         print(colors.red("wrong entry"))
         read_message()
 
+# show_profile shows the information of current user
 
 def show_profile():
     if user_name == 'yes':
@@ -357,7 +358,7 @@ def menu():
 
 
 def main():
-    new_user = Spy('','',0,0.0)
+    new_user = Spy('','',0,0.0)      # object of the class Spy (details.py)
     new_user.name = name()
     if admin.name.upper() == new_user.name.upper():
         print("Are you spy admin?")
